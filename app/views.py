@@ -71,3 +71,5 @@ def Home_view(request):
     return render(request, "Home.html",{"my_form":my_form})
 
 
+def TableResult_view(request):
+    return render(request,"TableResult.html")

@@ -35,7 +35,7 @@ var Freshman=false,
     Indoor=false,
     Outdoor=false,
     Arts1=false,
-    CW=false,
+    Lship=false,
     e_S=false,
     Music=false,
     Draw=false,
@@ -115,7 +115,7 @@ var all_questions = [{
   choices: ["Exactly 22", "Less than 22", "less than 18","More than 22"]
 },{
   question_string: 'Do you prefer... ',//If choose Ko-k
-  choices: ["Sports", "Arts", "Casual work"]
+  choices: ["Sports", "Arts", "Leadership"]
 },{
   question_string: 'What are you most interested in ? ',//Sports
   choices: ["e-Sports", "Outdoor sports", "indoor sports"]
@@ -147,7 +147,7 @@ var all_questions = [{
 ];
 
 //var str = document.getElementById('search-value').value;
-var str="Ethnic_Relation";
+var str="I want to registersubject"
             // Displaying the value
 document.getElementById("Explain").innerHTML='';
 document.getElementById('result-1').style.display='none';
@@ -155,10 +155,10 @@ document.getElementById('result-2').style.display='none';
 document.getElementById('label').style.display='none';
 factReset();
             
-if(str.match(/Jalinan_Masyarakat/g)){
+if(str.match(/Jalinan Masyarakat/g)){
   JMsubject=true;
   getInputValue();             
-}else if(str.match(/Ethnic_Relation/g)){
+}else if(str.match(/Ethnic Relation/g)){
   HEsubject=true;
   getInputValue();
 }else if(str.match(/Tamadun Islam/g)){
@@ -195,9 +195,8 @@ function getInputValue(){
       RadText[i].innerHTML=all_questions[0].choices[i];
              }                      
     }
-            
 
-function ChangeQuestion(){
+function RadioBtton(){
 
   if(document.getElementById('radio_1').checked||
   document.getElementById('radio_2').checked||
@@ -206,191 +205,112 @@ function ChangeQuestion(){
   document.getElementById('option1').checked||
   document.getElementById('option2').checked||
   document.getElementById('option3').checked||
-  document.getElementById('option4').checked)
-  {
+  document.getElementById('option4').checked){
+    return true;
+  }
 
+}
+function RadioReset(){
+  document.getElementById('radio_1').checked=false;
+  document.getElementById('radio_2').checked=false;
+  document.getElementById('radio_3').checked=false;
+  document.getElementById('radio_4').checked=false;
+}
+
+function ChangeQuestion(){
+  
+  if(RadioBtton())
+  {
         var answers=all_questions[current].choices;
-        
         CheckValueForRadio();
-        
         InferenceEngine();
-        console.log(Drop);
+        console.log("Locacl: "+local)
+        console.log("FSL: "+FSL)
+        RadioReset();
         current+=1;
         
         var question=all_questions[current].question_string;
-        HideAnswer();
-        if(HEsubject){
-          
-          if(Freshman){
-            current=1;
+      if(FAL||FSL){
+        if(FSL&&HEsubject){
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
             Q_area.innerHTML='';
-            question=all_questions[1].question_string;
             Q_area.innerHTML=question;
-            answers=all_questions[1].choices;
-            HideAnswer();
             for(var i =0;i<answers.length;i+=1){
-            RadSel[i].style.display='block';
-            RadText[i].innerHTML=all_questions[1].choices[i];
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
             }
             CheckValueForRadio();
-            
-            if(Art){
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              answers=all_questions[3].choices;
+            if(Take){
               HideAnswer();
-              for(var i =0;i<answers.length;i+=1){
-              RadSel[i].style.display='block';
-              RadText[i].innerHTML=all_questions[3].choices[i];
-              }
-              CheckValueForRadio();
-              if(local){
-                answers=all_questions[6].choices;
-                question=all_questions[6].question_string;
-                Q_area.innerHTML='';
-                Q_area.innerHTML=question;
-                for(var i =0;i<answers.length;i+=1){
-                  RadSel[i].style.display='block';
-                  RadText[i].innerHTML=all_questions[6].choices[i];
-                }
-                CheckValueForRadio();
-                if(Take){
-                  HideAnswer();
-                  Q_area.innerHTML='';
-                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                  document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
-                  document.getElementById('label').style.display='block';
-                  
-                  }else if(Drop){
-                  Q_area.innerHTML='';
-                  HideAnswer();
-                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                  }
-              }else if(Nonlocal){
-                HideAnswer();
-                answers=all_questions[15].choices;
-                question=all_questions[15].question_string;
-                Q_area.innerHTML='';
-                Q_area.innerHTML=question;
-                for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[15].choices[i];
-                }
-                if(IM){
-                  answers=all_questions[6].choices;
-                question=all_questions[6].question_string;
-                Q_area.innerHTML='';
-                Q_area.innerHTML=question;
-                for(var i =0;i<answers.length;i+=1){
-                  RadSel[i].style.display='block';
-                  RadText[i].innerHTML=all_questions[6].choices[i];
-                }
-                CheckValueForRadio();
-                if(Take){
-                  HideAnswer();
-                  Q_area.innerHTML='';
-                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                  document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
-                  document.getElementById('label').style.display='block';
-                  
-                  }else if(Drop){
-                  Q_area.innerHTML='';
-                  HideAnswer();
-                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                  }
-                }
-                CheckValueForRadio();
-              }
-            }else if(Sceince){
               Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              answers=all_questions[current].choices;
-              HideAnswer();
-              for(var i =0;i<answers.length;i+=1){
-              RadSel[i].style.display='block';
-              RadText[i].innerHTML=all_questions[current].choices[i];
-              }
-              CheckValueForRadio();
-              if(Art){
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              answers=all_questions[3].choices;
-              HideAnswer();
-              for(var i =0;i<answers.length;i+=1){
-              RadSel[i].style.display='block';
-              RadText[i].innerHTML=all_questions[3].choices[i];
-              }
-              CheckValueForRadio();
-              if(local){
-                answers=all_questions[6].choices;
-                question=all_questions[6].question_string;
-                Q_area.innerHTML='';
-                Q_area.innerHTML=question;
-                for(var i =0;i<answers.length;i+=1){
-                  RadSel[i].style.display='block';
-                  RadText[i].innerHTML=all_questions[6].choices[i];
-                }
-                CheckValueForRadio();
-                if(Take){
-                  HideAnswer();
-                  Q_area.innerHTML='';
-                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                  document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
-                  document.getElementById('label').style.display='block';
-                  
-                  }else if(Drop){
-                  Q_area.innerHTML='';
-                  HideAnswer();
-                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                  }
-              }else if(Nonlocal){
-                HideAnswer();
-                answers=all_questions[15].choices;
-                question=all_questions[15].question_string;
-                Q_area.innerHTML='';
-                Q_area.innerHTML=question;
-                for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[15].choices[i];
-                }
-                if(IM){
-                  answers=all_questions[6].choices;
-                question=all_questions[6].question_string;
-                Q_area.innerHTML='';
-                Q_area.innerHTML=question;
-                for(var i =0;i<answers.length;i+=1){
-                  RadSel[i].style.display='block';
-                  RadText[i].innerHTML=all_questions[6].choices[i];
-                }
-                CheckValueForRadio();
-                if(Take){
-                  HideAnswer();
-                  Q_area.innerHTML='';
-                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                  document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
-                  document.getElementById('label').style.display='block';
-                  
-                  }else if(Drop){
-                  Q_area.innerHTML='';
-                  HideAnswer();
-                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                  }
-                }
-                CheckValueForRadio();
-              }
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+              document.getElementById('label').style.display='block';
               
-
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+            
+        }else if(FAL&&HEsubject){
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
             }
-          }else if(Senior){
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+              document.getElementById('label').style.display='block';
+              document.getElementById("Explain").innerHTML="<h1>You can take this subject next semester</h1>";
 
-          }
-
-        }else if(FAL||FSL){
-          if(FAL&&HE){
+              
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+        }else if(FAL&&TITASsubject){
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+              document.getElementById('label').style.display='block';
+              
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+        }else if(FAL){
+            if(JMsubject||ILsubject||STEMsubject||APK){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, this subject can be taken starting your Second year";
+            }
+              
+        }else if(FAL&&HE){
             
             answers=all_questions[6].choices;
             question=all_questions[6].question_string;
@@ -408,6 +328,7 @@ function ChangeQuestion(){
               document.getElementById('result-1').style.display='block';
               document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
               document.getElementById('label').style.display='block';
+              document.getElementById("Explain").innerHTML="<h1>You can take this subject next semester</h1>";
               
             }else if(Drop){
               Q_area.innerHTML='';
@@ -432,6 +353,7 @@ function ChangeQuestion(){
               document.getElementById('result-1').style.display='block';
               document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
               document.getElementById('label').style.display='block';
+              document.getElementById("Explain").innerHTML="<h1>You can take this subject next semester</h1>";
             }else if(Drop){
               Q_area.innerHTML='';
               HideAnswer();
@@ -461,6 +383,59 @@ function ChangeQuestion(){
                 document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
               }
             
+        }else if(FSL&&HEsubject){
+          answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+              document.getElementById('label').style.display='block';
+              
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+        }else if(FSL&&TITASsubject){
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+              document.getElementById('label').style.display='block';
+              document.getElementById("Explain").innerHTML="<h1>You can take this subject next semester</h1>";
+              
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+        }else if(FSL){
+          if(JMsubject||ILsubject||STEMsubject||APK){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, this subject can be taken starting your Second year";
+          }
         }else if(FSL&TITAS){
           answers=all_questions[6].choices;
           question=all_questions[6].question_string;
@@ -531,176 +506,313 @@ function ChangeQuestion(){
                 document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
               }
           
-        }}else if(SSL){
-          current=5;
-          var question=all_questions[current].question_string;
-          Q_area.innerHTML='';
-          Q_area.innerHTML=question;
-          answers=all_questions[current].choices;
-          for(var i =0;i<answers.length;i+=1){
-            CheckBox[i].style.display='block';
-            Option[i].innerHTML=all_questions[current].choices[i];
-          }       CheckValueForCheckBox();
-                
-                if(SE&&IL&&APK&&KoK){
-                  Q_area.innerHTML='';
-                  HideAnswer();
-                  Q_area.innerHTML=all_questions[14].question_string;
-                  answers=all_questions[14].choices;
-                  for(var i =0;i<answers.length;i+=1){
-                    RadSel[i].style.display='block';
-                    RadText[i].innerHTML=all_questions[14].choices[i];
-                  }
-                  CheckValueForRadio();
+        }}else if(SSL||SAL){
+          HideAnswer();
+          if(SSL&&JMsubject){
+            HideAnswer();
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat";
+              document.getElementById('label').style.display='block';
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }          
+          }else if(SSL&&APKsubject){
+            HideAnswer();
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan dan Keusahawan";
+              document.getElementById('label').style.display='block';
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }          
+          }else if(SSL&&ILsubject){
+            HideAnswer();
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1004 | Literasi Maklumat";
+              document.getElementById('label').style.display='block';
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+          }else if(SSL&&IPHsubject){
+            HideAnswer();
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIX 1003 | Pengenalan Kepada Keamanan dan Kemanusiaan";
+              document.getElementById('label').style.display='block';
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+          }else if(SSL&&STEMsubject){
+            HideAnswer();
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIX 1004 | Apresiasi STEM";
+              document.getElementById('label').style.display='block';
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+          }else if(TITASsubject||HEsubject){
+            answers=all_questions[6].choices;
+            question=all_questions[6].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[6].choices[i];
+            }
+            CheckValueForRadio();
+            if(Take&&HEsubject){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+              document.getElementById('label').style.display='block';
+              document.getElementById("Explain").innerHTML="<h1>You can only pick a group on FRIDAY ONLY</h1>";
+
+            }else if(Take&&TITASsubject){
+              HideAnswer();
+              Q_area.innerHTML='';
+              Q_area.innerHTML="We recommend you to take the subject below: ";
+              document.getElementById('result-1').style.display='block';
+              document.getElementById('TextResult').innerHTML="GIG 1002 | Tamadun Islam dan Tamadun Asia(HE)";
+              document.getElementById('label').style.display='block';
+              document.getElementById("Explain").innerHTML="<h1>You can only pick a group on FRIDAY ONLY</h1>";
+            }else if(Drop){
+              Q_area.innerHTML='';
+              HideAnswer();
+                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+              }
+          }else if(SSL){
+            current=5;
+            var question=all_questions[current].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            answers=all_questions[current].choices;
+            for(var i =0;i<answers.length;i+=1){
+              CheckBox[i].style.display='block';
+              Option[i].innerHTML=all_questions[current].choices[i];
+            }       CheckValueForCheckBox();
                   
-                      if(HE){
-                        HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
-                              }
-                              CheckValueForRadio();
-                              if(Take){
-                                HideAnswer();
-                                Q_area.innerHTML='';
-                                Q_area.innerHTML="We recommend you to take the subject below: ";
-                                document.getElementById('result-1').style.display='block';
-                                document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
-                                document.getElementById('label').style.display='block';
-                              }else if(Drop){
-                                Q_area.innerHTML='';
-                                HideAnswer();
-                                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                                }
-                        
-                      }else if(TITAS){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
-                          document.getElementById('label').style.display='block';
-                          }else if(Drop){
-                            Q_area.innerHTML='';
-                            HideAnswer();
-                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                            }
-                        
-                      }else if(Both){
-                        HideAnswer();
-                        Q_area.innerHTML='';                   
-                        Q_area.innerHTML=all_questions[16].question_string;
-                        answers=all_questions[16].choices;
-                        for(var i =0;i<answers.length;i+=1){
-                        RadSel[i].style.display='block';
-                        RadText[i].innerHTML=all_questions[16].choices[i];
-                          }
-                        CheckValueForRadio();
-                            if(STEM){
-                              HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
-                              }
-                              CheckValueForRadio();
-                              if(Take){
-                                HideAnswer();
-                                  Q_area.innerHTML='';
-                                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                                  document.getElementById('result-1').style.display='block';
-                                  document.getElementById('TextResult').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
-                                  document.getElementById('label').style.display='block';
-                              }else if(Drop){
-                                Q_area.innerHTML='';
-                                HideAnswer();
-                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                                }
-                            }else if(IPH){
-                              HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
-                              }
-                              CheckValueForRadio();
-                              if(Take){
-                                HideAnswer();
-                                Q_area.innerHTML='';
-                                Q_area.innerHTML="We recommend you to take the subject below: ";
-                                document.getElementById('result-1').style.display='block';
-                                document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
-                                document.getElementById('label').style.display='block';
-                              }else if(Drop){
-                                Q_area.innerHTML='';
-                                HideAnswer();
-                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                                }
-                              
-                            }else if(None){
-                              HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
-                              }
-                              CheckValueForRadio();
-                              if(Take){
-                                HideAnswer();
-                                Q_area.innerHTML='';
-                                Q_area.innerHTML="We recommend you to take the subject below: ";
-                                document.getElementById('result-1').style.display='block';
-                                document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
-                                document.getElementById('label').style.display='block';
-                                document.getElementById('result-2').style.display='block';
-                                document.getElementById('TextResult2').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
-
-                              }else if(Drop){
-                                Q_area.innerHTML='';
-                                HideAnswer();
-                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                              }
-
-                            }
-                      }
-                  }else if(SE&&IL&&APK){
-                    current=7
+                  if(SE&&IL&&APK&&KoK){
                     Q_area.innerHTML='';
                     HideAnswer();
-                    Q_area.innerHTML=all_questions[current].question_string;
-                    answers=all_questions[current].choices;
+                    Q_area.innerHTML=all_questions[14].question_string;
+                    answers=all_questions[14].choices;
                     for(var i =0;i<answers.length;i+=1){
                       RadSel[i].style.display='block';
-                      RadText[i].innerHTML=all_questions[current].choices[i];
+                      RadText[i].innerHTML=all_questions[14].choices[i];
                     }
                     CheckValueForRadio();
                     
-                    if(Sport){
-                      current=8;
+                        if(HE){
+                                HideAnswer();
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
+                                }
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
+                                  Q_area.innerHTML='';
+                                  Q_area.innerHTML="We recommend you to take the subject below: ";
+                                  document.getElementById('result-1').style.display='block';
+                                  document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+                                  document.getElementById('label').style.display='block';
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                  }
+                          
+                        }else if(TITAS){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+                            document.getElementById('label').style.display='block';
+                            }else if(Drop){
+                              Q_area.innerHTML='';
+                              HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                              }
+                          
+                        }else if(Both){
+                          HideAnswer();
+                          Q_area.innerHTML='';                   
+                          Q_area.innerHTML=all_questions[16].question_string;
+                          answers=all_questions[16].choices;
+                          for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[16].choices[i];
+                            }
+                          CheckValueForRadio();
+                              if(STEM){
+                                HideAnswer();
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
+                                }
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
+                                    Q_area.innerHTML='';
+                                    Q_area.innerHTML="We recommend you to take the subject below: ";
+                                    document.getElementById('result-1').style.display='block';
+                                    document.getElementById('TextResult').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+                                    document.getElementById('label').style.display='block';
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                  }
+                              }else if(IPH){
+                                HideAnswer();
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
+                                }
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
+                                  Q_area.innerHTML='';
+                                  Q_area.innerHTML="We recommend you to take the subject below: ";
+                                  document.getElementById('result-1').style.display='block';
+                                  document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
+                                  document.getElementById('label').style.display='block';
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                  }
+                                
+                              }else if(None){
+                                HideAnswer();
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
+                                }
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
+                                  Q_area.innerHTML='';
+                                  Q_area.innerHTML="We recommend you to take the subject below: ";
+                                  document.getElementById('result-1').style.display='block';
+                                  document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
+                                  document.getElementById('label').style.display='block';
+                                  document.getElementById('result-2').style.display='block';
+                                  document.getElementById('TextResult2').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+  
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                }
+  
+                              }
+                        }
+                    }else if(SE&&IL&&APK){
+                      current=7
                       Q_area.innerHTML='';
                       HideAnswer();
                       Q_area.innerHTML=all_questions[current].question_string;
@@ -710,348 +822,431 @@ function ChangeQuestion(){
                         RadText[i].innerHTML=all_questions[current].choices[i];
                       }
                       CheckValueForRadio();
-                        if(e_S){
-
-                        }else if(Outdoor){
-
-                          if(Fb){
-
-                          }else if(rug){
-
-                          }else if(Fbee){
-
-                          }else if(Vball){
-
-                          }
-
-                        }else if(Indoor){
-                          if(Bad_m){
-
-                          }else if(MA){
-
-                          }else if(Bball){
-
-                          }else if(Takraw){
-
-                          }
-                        }
                       
-                    }else if(Arts1){
-
-                      if(Music){
-
-                      }else if(Draw){
-
-                      }else if(Dance){
-
+                      if(Sport){//Look this up
+                        current=8;
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        Q_area.innerHTML=all_questions[current].question_string;
+                        answers=all_questions[current].choices;
+                        for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[current].choices[i];
+                        }
+                        CheckValueForRadio();
+                          if(e_S){
+  
+                          }else if(Outdoor){
+                            HideAnswer();
+                            answers=all_questions[11].choices;
+                            question=all_questions[11].question_string;
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML=question;
+                            for(var i =0;i<answers.length;i+=1){
+                              RadSel[i].style.display='block';
+                              RadText[i].innerHTML=all_questions[11].choices[i];
+                            }
+                            CheckValueForRadio(); 
+                            if(Fb){
+  
+                            }else if(rug){
+  
+                            }else if(Fbee){
+  
+                            }else if(Vball){
+  
+                            }
+  
+                          }else if(Indoor){
+                            HideAnswer();
+                            answers=all_questions[12].choices;
+                            question=all_questions[12].question_string;
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML=question;
+                            for(var i =0;i<answers.length;i+=1){
+                              RadSel[i].style.display='block';
+                              RadText[i].innerHTML=all_questions[12].choices[i];
+                            }
+                            CheckValueForRadio();
+                            if(Bad_m){
+  
+                            }else if(MA){
+  
+                            }else if(Bball){
+  
+                            }else if(Takraw){
+  
+                            }
+                          }
+                        
+                      }else if(Arts1){
+                        HideAnswer();
+                        answers=all_questions[8].choices;
+                        question=all_questions[8].question_string;
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML=question;
+                        for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[8].choices[i];
+                        }
+                        CheckValueForRadio();  
+                        if(Music){
+  
+                        }else if(Draw){
+  
+                        }else if(Dance){
+  
+                        }
+                      }else if(Lship){
+                        HideAnswer();
+                        answers=all_questions[10].choices;
+                        question=all_questions[10].question_string;
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML=question;
+                        for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[10].choices[i];
+                        }
+                        CheckValueForRadio();                       
+  
+                        if(WPT){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GKA 1001 | Attach@Industry";
+                            document.getElementById('label').style.display='block';
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                            }
+  
+                        }else if(Freelance){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GKN 1002 | Independent Research";
+                            document.getElementById('label').style.display='block';
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                            }                    
+                        }
+  
                       }
-                    }else if(CW){
-
-                      if(WPT){
-
-                      }else if(Freelance){}
-
-                    }
-                  }else if(SE&&IL){
-                    
-                    HideAnswer();
-                    answers=all_questions[6].choices;
-                    question=all_questions[6].question_string;
-                    Q_area.innerHTML='';
-                    Q_area.innerHTML=question;
-                    for(var i =0;i<answers.length;i+=1){
-                      RadSel[i].style.display='block';
-                      RadText[i].innerHTML=all_questions[6].choices[i];
-                    }
-                    CheckValueForRadio();
-                    if(Take){
+                    }else if(SE&&IL){
+                      
+                      HideAnswer();
+                      answers=all_questions[6].choices;
+                      question=all_questions[6].question_string;
+                      Q_area.innerHTML='';
+                      Q_area.innerHTML=question;
+                      for(var i =0;i<answers.length;i+=1){
+                        RadSel[i].style.display='block';
+                        RadText[i].innerHTML=all_questions[6].choices[i];
+                      }
+                      CheckValueForRadio();
+                      if(Take){
+                        HideAnswer();
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML="We recommend you to take the subject below: ";
+                        document.getElementById('result-1').style.display='block';
+                        document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                        document.getElementById('label').style.display='block';
+                      }else if (Drop){
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                      }
+                      
+  
+            
+                    }else if(SE&&APK){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
+                            document.getElementById('label').style.display='block';
+                          }else if (Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          }
+                          
+                    }else if(IL&&APK){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                            document.getElementById('label').style.display='block';
+                          }else if (Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          }
+                          
+                    }else if(SE){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
+                            document.getElementById('label').style.display='block';
+  
+                            document.getElementById('result-2').style.display='block';
+                            document.getElementById('TextResult2').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                          }else if (Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          }
+                      
+                    }else if(APK){
+                      HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                      if(Take){
+                        HideAnswer();
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML="We recommend you to take the subject below: ";
+                        document.getElementById('result-1').style.display='block';
+                        document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
+                        document.getElementById('label').style.display='block';
+    
+                        document.getElementById('result-2').style.display='block';
+                        document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                      }else if (Drop){
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                      }
+                      
+                    }else if(IL){
+                      HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                      if(Take){
+                        HideAnswer();
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML="We recommend you to take the subject below: ";
+                        document.getElementById('result-1').style.display='block';
+                        document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                        document.getElementById('label').style.display='block';
+  
+                        document.getElementById('result-2').style.display='block';
+                        document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                      }else if (Drop){
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                      }
                       HideAnswer();
                       Q_area.innerHTML='';
                       Q_area.innerHTML="We recommend you to take the subject below: ";
                       document.getElementById('result-1').style.display='block';
                       document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                      document.getElementById('label').style.display='block';
-                    }else if (Drop){
-                      Q_area.innerHTML='';
-                      HideAnswer();
-                      document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                    }
-                    
-
-          
-                  }else if(SE&&APK){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
-                          document.getElementById('label').style.display='block';
-                        }else if (Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                          document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-                        
-                  }else if(IL&&APK){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                          document.getElementById('label').style.display='block';
-                        }else if (Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                          document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-                        
-                  }else if(SE){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
-                          document.getElementById('label').style.display='block';
-
-                          document.getElementById('result-2').style.display='block';
-                          document.getElementById('TextResult2').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                        }else if (Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                          document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-                    
-                  }else if(APK){
-                    HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                    if(Take){
-                      HideAnswer();
-                      Q_area.innerHTML='';
-                      Q_area.innerHTML="We recommend you to take the subject below: ";
-                      document.getElementById('result-1').style.display='block';
-                      document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
                       document.getElementById('label').style.display='block';
   
                       document.getElementById('result-2').style.display='block';
                       document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                    }else if (Drop){
-                      Q_area.innerHTML='';
-                      HideAnswer();
-                      document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
                     }
-                    
-                  }else if(IL){
-                    HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                    if(Take){
-                      HideAnswer();
-                      Q_area.innerHTML='';
-                      Q_area.innerHTML="We recommend you to take the subject below: ";
-                      document.getElementById('result-1').style.display='block';
-                      document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                      document.getElementById('label').style.display='block';
-
-                      document.getElementById('result-2').style.display='block';
-                      document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                    }else if (Drop){
-                      Q_area.innerHTML='';
-                      HideAnswer();
-                      document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                    }
+          }else if(SAL){
+            current=5;
+            var question=all_questions[current].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            answers=all_questions[current].choices;
+            for(var i =0;i<answers.length;i+=1){
+              CheckBox[i].style.display='block';
+              Option[i].innerHTML=all_questions[current].choices[i];
+            }       CheckValueForCheckBox();
+            if(SE&&IL&&APK&&KoK){
+              Q_area.innerHTML='';
+              HideAnswer();
+              Q_area.innerHTML=all_questions[14].question_string;
+              answers=all_questions[14].choices;
+              for(var i =0;i<answers.length;i+=1){
+                RadSel[i].style.display='block';
+                RadText[i].innerHTML=all_questions[14].choices[i];
+              }
+              CheckValueForRadio();
+              InferenceEngine();
+                  if(HE){
                     HideAnswer();
                     Q_area.innerHTML='';
                     Q_area.innerHTML="We recommend you to take the subject below: ";
                     document.getElementById('result-1').style.display='block';
-                    document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                    document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
                     document.getElementById('label').style.display='block';
-
-                    document.getElementById('result-2').style.display='block';
-                    document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                  }
-        }else if(SAL){
-          current=5;
-          var question=all_questions[current].question_string;
-          Q_area.innerHTML='';
-          Q_area.innerHTML=question;
-          answers=all_questions[current].choices;
-          for(var i =0;i<answers.length;i+=1){
-            CheckBox[i].style.display='block';
-            Option[i].innerHTML=all_questions[current].choices[i];
-          }       CheckValueForCheckBox();
-          if(SE&&IL&&APK&&KoK){
-            Q_area.innerHTML='';
-            HideAnswer();
-            Q_area.innerHTML=all_questions[14].question_string;
-            answers=all_questions[14].choices;
-            for(var i =0;i<answers.length;i+=1){
-              RadSel[i].style.display='block';
-              RadText[i].innerHTML=all_questions[14].choices[i];
-            }
-            CheckValueForRadio();
-            InferenceEngine();
-                if(HE){
-                  HideAnswer();
-                  Q_area.innerHTML='';
-                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                  document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
-                  document.getElementById('label').style.display='block';
-                }else if(TITAS){
-                  HideAnswer();
-                  Q_area.innerHTML='';
-                  Q_area.innerHTML="We recommend you to take the subject below: ";
-                  document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
-                  document.getElementById('label').style.display='block';
-                }else if(Both){
-                  HideAnswer();
-                  Q_area.innerHTML='';                   
-                  Q_area.innerHTML=all_questions[16].question_string;
-                  answers=all_questions[16].choices;
-                  for(var i =0;i<answers.length;i+=1){
-                  RadSel[i].style.display='block';
-                  RadText[i].innerHTML=all_questions[16].choices[i];
-                    }
-                  CheckValueForRadio();
-                      if(STEM){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
+                  }else if(TITAS){
+                    HideAnswer();
+                    Q_area.innerHTML='';
+                    Q_area.innerHTML="We recommend you to take the subject below: ";
+                    document.getElementById('result-1').style.display='block';
+                    document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+                    document.getElementById('label').style.display='block';
+                  }else if(Both){
+                    HideAnswer();
+                    Q_area.innerHTML='';                   
+                    Q_area.innerHTML=all_questions[16].question_string;
+                    answers=all_questions[16].choices;
+                    for(var i =0;i<answers.length;i+=1){
+                    RadSel[i].style.display='block';
+                    RadText[i].innerHTML=all_questions[16].choices[i];
+                      }
+                    CheckValueForRadio();
+                        if(STEM){
                           HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                              Q_area.innerHTML='';
+                              Q_area.innerHTML="We recommend you to take the subject below: ";
+                              document.getElementById('result-1').style.display='block';
+                              document.getElementById('TextResult').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+                              document.getElementById('label').style.display='block';
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                            }
+                        }else if(IPH){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
                             Q_area.innerHTML='';
                             Q_area.innerHTML="We recommend you to take the subject below: ";
                             document.getElementById('result-1').style.display='block';
-                            document.getElementById('TextResult').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+                            document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
                             document.getElementById('label').style.display='block';
-                        }else if(Drop){
-                          Q_area.innerHTML='';
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                            }
+                          
+                        }else if(None){
                           HideAnswer();
-                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
                           }
-                      }else if(IPH){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
-                          document.getElementById('label').style.display='block';
-                        }else if(Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
+                            document.getElementById('label').style.display='block';
+                            document.getElementById('result-2').style.display='block';
+                            document.getElementById('TextResult2').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+  
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
                           }
-                        
-                      }else if(None){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
+  
                         }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
-                          document.getElementById('label').style.display='block';
-                          document.getElementById('result-2').style.display='block';
-                          document.getElementById('TextResult2').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
-
-                        }else if(Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-
-                      }
-                }
-            }else if(SE&&IL&&APK){
-              current=7
-              Q_area.innerHTML='';
-              HideAnswer();
-              Q_area.innerHTML=all_questions[current].question_string;
-              answers=all_questions[current].choices;
-              for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[current].choices[i];
-              }
-              CheckValueForRadio();
-              
-              if(Sport){
-                current=8;
+                  }
+              }else if(SE&&IL&&APK){
+                current=7
                 Q_area.innerHTML='';
                 HideAnswer();
                 Q_area.innerHTML=all_questions[current].question_string;
@@ -1061,159 +1256,144 @@ function ChangeQuestion(){
                   RadText[i].innerHTML=all_questions[current].choices[i];
                 }
                 CheckValueForRadio();
-                  if(e_S){
-
-                  }else if(Outdoor){
-
-                    if(Fb){
-
-                    }else if(rug){
-
-                    }else if(Fbee){
-
-                    }else if(Vball){
-
-                    }
-
-                  }else if(Indoor){
-                    if(Bad_m){
-
-                    }else if(MA){
-
-                    }else if(Bball){
-
-                    }else if(Takraw){
-
-                    }
-                  }
                 
-              }else if(Arts1){
-
-                if(Music){
-
-                }else if(Draw){
-
-                }else if(Dance){
-
+                if(Sport){
+                  current=8;
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  Q_area.innerHTML=all_questions[current].question_string;
+                  answers=all_questions[current].choices;
+                  for(var i =0;i<answers.length;i+=1){
+                    RadSel[i].style.display='block';
+                    RadText[i].innerHTML=all_questions[current].choices[i];
+                  }
+                  CheckValueForRadio();
+                    if(e_S){
+  
+                    }else if(Outdoor){
+  
+                      if(Fb){
+  
+                      }else if(rug){
+  
+                      }else if(Fbee){
+  
+                      }else if(Vball){
+  
+                      }
+  
+                    }else if(Indoor){
+                      if(Bad_m){
+  
+                      }else if(MA){
+  
+                      }else if(Bball){
+  
+                      }else if(Takraw){
+  
+                      }
+                    }
+                  
+                }else if(Arts1){
+  
+                  if(Music){
+  
+                  }else if(Draw){
+  
+                  }else if(Dance){
+  
+                  }
+                }else if(Lship){
+  
+                  if(WPT){
+  
+                  }else if(Freelance){}
+  
                 }
-              }else if(CW){
-
-                if(WPT){
-
-                }else if(Freelance){}
-
-              }
-            }else if(SE&&IL){
-              HideAnswer();
-              answers=all_questions[6].choices;
-              question=all_questions[6].question_string;
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[6].choices[i];
-              }
-              CheckValueForRadio();
-              if(Take){
+              }else if(SE&&IL){
                 HideAnswer();
+                answers=all_questions[6].choices;
+                question=all_questions[6].question_string;
+                Q_area.innerHTML='';
+                Q_area.innerHTML=question;
+                for(var i =0;i<answers.length;i+=1){
+                  RadSel[i].style.display='block';
+                  RadText[i].innerHTML=all_questions[6].choices[i];
+                }
+                CheckValueForRadio();
+                if(Take){
+                  HideAnswer();
+                    Q_area.innerHTML='';
+                    Q_area.innerHTML="We recommend you to take the subject below: ";
+                    document.getElementById('result-1').style.display='block';
+                    document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                    document.getElementById('label').style.display='block';
+                }else if (Drop){
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }
+                     
+                    
+              }else if(SE&&APK){
+                HideAnswer();
+                answers=all_questions[6].choices;
+                question=all_questions[6].question_string;
+                Q_area.innerHTML='';
+                Q_area.innerHTML=question;
+                for(var i =0;i<answers.length;i+=1){
+                  RadSel[i].style.display='block';
+                  RadText[i].innerHTML=all_questions[6].choices[i];
+                }
+                CheckValueForRadio();
+                if(Take){
+                  HideAnswer();
                   Q_area.innerHTML='';
                   Q_area.innerHTML="We recommend you to take the subject below: ";
                   document.getElementById('result-1').style.display='block';
-                  document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                  document.getElementById('TextResult').innerHTML="GIG 1002 | Literasi Maklumat(IL)";
                   document.getElementById('label').style.display='block';
-              }else if (Drop){
+                }else if (Drop){
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }
+              }else if(IL&&APK){
+                HideAnswer();
+                answers=all_questions[6].choices;
+                question=all_questions[6].question_string;
                 Q_area.innerHTML='';
+                Q_area.innerHTML=question;
+                for(var i =0;i<answers.length;i+=1){
+                  RadSel[i].style.display='block';
+                  RadText[i].innerHTML=all_questions[6].choices[i];
+                }
+                CheckValueForRadio();
+                if(Take){
+                  HideAnswer();
+                  Q_area.innerHTML='';
+                  Q_area.innerHTML="We recommend you to take the subject below: ";
+                  document.getElementById('result-1').style.display='block';
+                  document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                  document.getElementById('label').style.display='block';
+                }else if (Drop){
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }
+              }else if(SE){
                 HideAnswer();
-                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-              }
-                   
-                  
-            }else if(SE&&APK){
-              HideAnswer();
-              answers=all_questions[6].choices;
-              question=all_questions[6].question_string;
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[6].choices[i];
-              }
-              CheckValueForRadio();
-              if(Take){
-                HideAnswer();
+                answers=all_questions[6].choices;
+                question=all_questions[6].question_string;
                 Q_area.innerHTML='';
-                Q_area.innerHTML="We recommend you to take the subject below: ";
-                document.getElementById('result-1').style.display='block';
-                document.getElementById('TextResult').innerHTML="GIG 1002 | Literasi Maklumat(IL)";
-                document.getElementById('label').style.display='block';
-              }else if (Drop){
-                Q_area.innerHTML='';
-                HideAnswer();
-                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-              }
-            }else if(IL&&APK){
-              HideAnswer();
-              answers=all_questions[6].choices;
-              question=all_questions[6].question_string;
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[6].choices[i];
-              }
-              CheckValueForRadio();
-              if(Take){
-                HideAnswer();
-                Q_area.innerHTML='';
-                Q_area.innerHTML="We recommend you to take the subject below: ";
-                document.getElementById('result-1').style.display='block';
-                document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                document.getElementById('label').style.display='block';
-              }else if (Drop){
-                Q_area.innerHTML='';
-                HideAnswer();
-                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-              }
-            }else if(SE){
-              HideAnswer();
-              answers=all_questions[6].choices;
-              question=all_questions[6].question_string;
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[6].choices[i];
-              }
-              CheckValueForRadio();
-              if(Take){
-                HideAnswer();
-              Q_area.innerHTML='';
-              Q_area.innerHTML="We recommend you to take the subject below: ";
-              document.getElementById('result-1').style.display='block';
-              document.getElementById('TextResult').innerHTML="GIG 1002 | Literasi Maklumat(IL)";
-              document.getElementById('label').style.display='block';
-
-              document.getElementById('result-2').style.display='block';
-              document.getElementById('TextResult2').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-              }else if (Drop){
-                Q_area.innerHTML='';
-                HideAnswer();
-                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-              }
-              
-            }else if(APK){
-              HideAnswer();
-              answers=all_questions[6].choices;
-              question=all_questions[6].question_string;
-              Q_area.innerHTML='';
-              Q_area.innerHTML=question;
-              for(var i =0;i<answers.length;i+=1){
-                RadSel[i].style.display='block';
-                RadText[i].innerHTML=all_questions[6].choices[i];
-              }
-              CheckValueForRadio();
-              if(Take){
-                HideAnswer();
+                Q_area.innerHTML=question;
+                for(var i =0;i<answers.length;i+=1){
+                  RadSel[i].style.display='block';
+                  RadText[i].innerHTML=all_questions[6].choices[i];
+                }
+                CheckValueForRadio();
+                if(Take){
+                  HideAnswer();
                 Q_area.innerHTML='';
                 Q_area.innerHTML="We recommend you to take the subject below: ";
                 document.getElementById('result-1').style.display='block';
@@ -1221,14 +1401,91 @@ function ChangeQuestion(){
                 document.getElementById('label').style.display='block';
   
                 document.getElementById('result-2').style.display='block';
-                document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-              }else if (Drop){
-                Q_area.innerHTML='';
+                document.getElementById('TextResult2').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                }else if (Drop){
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }
+                
+              }else if(APK){
                 HideAnswer();
-                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                answers=all_questions[6].choices;
+                question=all_questions[6].question_string;
+                Q_area.innerHTML='';
+                Q_area.innerHTML=question;
+                for(var i =0;i<answers.length;i+=1){
+                  RadSel[i].style.display='block';
+                  RadText[i].innerHTML=all_questions[6].choices[i];
+                }
+                CheckValueForRadio();
+                if(Take){
+                  HideAnswer();
+                  Q_area.innerHTML='';
+                  Q_area.innerHTML="We recommend you to take the subject below: ";
+                  document.getElementById('result-1').style.display='block';
+                  document.getElementById('TextResult').innerHTML="GIG 1002 | Literasi Maklumat(IL)";
+                  document.getElementById('label').style.display='block';
+    
+                  document.getElementById('result-2').style.display='block';
+                  document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                }else if (Drop){
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }
+                
+              }else if(IL){
+                HideAnswer();
+                answers=all_questions[6].choices;
+                question=all_questions[6].question_string;
+                Q_area.innerHTML='';
+                Q_area.innerHTML=question;
+                for(var i =0;i<answers.length;i+=1){
+                  RadSel[i].style.display='block';
+                  RadText[i].innerHTML=all_questions[6].choices[i];
+                }
+                CheckValueForRadio();
+                if(Take){
+                  HideAnswer();
+                Q_area.innerHTML='';
+                Q_area.innerHTML="We recommend you to take the subject below: ";
+                document.getElementById('result-1').style.display='block';
+                document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                document.getElementById('label').style.display='block';
+  
+                document.getElementById('result-2').style.display='block';
+                document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                }else if (Drop){
+                  Q_area.innerHTML='';
+                  HideAnswer();
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }
+                HideAnswer();
+                Q_area.innerHTML='';
+                Q_area.innerHTML="We recommend you to take the subject below: ";
+                document.getElementById('result-1').style.display='block';
+                document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                document.getElementById('label').style.display='block';
+  
+                document.getElementById('result-2').style.display='block';
+                document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
               }
-              
-            }else if(IL){
+          }
+
+        }else if(FANL|FSNL){
+          if(TITASsubject||HEsubject){
+            HideAnswer();
+            answers=all_questions[15].choices;
+            question=all_questions[15].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            for(var i =0;i<answers.length;i+=1){
+              RadSel[i].style.display='block';
+              RadText[i].innerHTML=all_questions[15].choices[i];
+            }
+            CheckValueForRadio();
+            if(IM){
               HideAnswer();
               answers=all_questions[6].choices;
               question=all_questions[6].question_string;
@@ -1239,32 +1496,56 @@ function ChangeQuestion(){
                 RadText[i].innerHTML=all_questions[6].choices[i];
               }
               CheckValueForRadio();
-              if(Take){
+              if(Take&&HEsubject){
                 HideAnswer();
-              Q_area.innerHTML='';
-              Q_area.innerHTML="We recommend you to take the subject below: ";
-              document.getElementById('result-1').style.display='block';
-              document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-              document.getElementById('label').style.display='block';
-
-              document.getElementById('result-2').style.display='block';
-              document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-              }else if (Drop){
+                Q_area.innerHTML='';
+                Q_area.innerHTML="We recommend you to take the subject below: ";
+                document.getElementById('result-1').style.display='block';
+                document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
+                document.getElementById('label').style.display='block';
+              }else if(Take&&TITASsubject){
+                HideAnswer();
+                Q_area.innerHTML='';
+                Q_area.innerHTML="We recommend you to take the subject below: ";
+                document.getElementById('result-1').style.display='block';
+                document.getElementById('TextResult').innerHTML="GIG 1001 | Islamic Civilization and Asian Civilization";
+                document.getElementById('label').style.display='block';               
+              }else if(Drop){
                 Q_area.innerHTML='';
                 HideAnswer();
-                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-              }
-              HideAnswer();
-              Q_area.innerHTML='';
-              Q_area.innerHTML="We recommend you to take the subject below: ";
-              document.getElementById('result-1').style.display='block';
-              document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-              document.getElementById('label').style.display='block';
+                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                }else if(No){
+                  HideAnswer();
+                  answers=all_questions[6].choices;
+                  question=all_questions[6].question_string;
+                  Q_area.innerHTML='';
+                  Q_area.innerHTML=question;
+                  for(var i =0;i<answers.length;i+=1){
+                    RadSel[i].style.display='block';
+                    RadText[i].innerHTML=all_questions[6].choices[i];
+                  }
+                  CheckValueForRadio();
+                  if(Take){
+                    HideAnswer();
+                    Q_area.innerHTML='';
+                    Q_area.innerHTML="We recommend you to take the subject below: ";
+                    document.getElementById('result-1').style.display='block';
+                    document.getElementById('TextResult').innerHTML="GIG 1006 | Introduction to Malaysia";
+                    document.getElementById('label').style.display='block';
+                    document.getElementById("Explain").innerHTML="<h1>It is compulsary for you take this subject first before taking an other subject";
+                  }else if (Drop){
+                    Q_area.innerHTML='';
+                    HideAnswer();
+                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                  }
+                }
 
-              document.getElementById('result-2').style.display='block';
-              document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
             }
-        }else if(FANL|FSNL){
+          }else if(JMsubject||APKsubject||ILsubject||IPHsubject||STEMsubject){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, this subject can be taken starting your Second year";           
+          }else{
             HideAnswer();
             answers=all_questions[15].choices;
             question=all_questions[15].question_string;
@@ -1286,7 +1567,7 @@ function ChangeQuestion(){
               RadSel[i].style.display='block';
               RadText[i].innerHTML=all_questions[4].choices[i];
                                                                 }
-                console.log(FANL+" this "+None)
+                
                 if(TITAS){
                   answers=all_questions[6].choices;
                   question=all_questions[6].question_string;
@@ -1302,7 +1583,7 @@ function ChangeQuestion(){
                     Q_area.innerHTML='';
                     Q_area.innerHTML="We recommend you to take the subject below: ";
                     document.getElementById('result-1').style.display='block';
-                    document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+                    document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
                     document.getElementById('label').style.display='block';
                     
                   }else if(Drop){
@@ -1326,7 +1607,7 @@ function ChangeQuestion(){
                     Q_area.innerHTML='';
                     Q_area.innerHTML="We recommend you to take the subject below: ";
                     document.getElementById('result-1').style.display='block';
-                    document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+                    document.getElementById('TextResult').innerHTML="GIG 1001 | Islamic Civilization and Asian Civilization";
                     document.getElementById('label').style.display='block';
                     
                   }else if(Drop){
@@ -1351,7 +1632,7 @@ function ChangeQuestion(){
                     Q_area.innerHTML='';
                     Q_area.innerHTML="We recommend you to take the subject below: ";
                     document.getElementById('result-1').style.display='block';
-                    document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+                    document.getElementById('TextResult').innerHTML="GIG 1001 | Islamic Civilization and Asian Civilization";
                     document.getElementById('label').style.display='block';
                   }else if (Drop){
                     Q_area.innerHTML='';
@@ -1374,7 +1655,7 @@ function ChangeQuestion(){
                     Q_area.innerHTML='';
                     Q_area.innerHTML="We recommend you to take the subject below: ";
                     document.getElementById('result-1').style.display='block';
-                    document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+                    document.getElementById('TextResult').innerHTML="GIG 1002 | Ethnic Relation";
                     document.getElementById('label').style.display='block';
                   }else if (Drop){
                     Q_area.innerHTML='';
@@ -1406,142 +1687,134 @@ function ChangeQuestion(){
                     document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
                   }
               }
-        }else if(SSNL|SANL){
-          current=5;
-          var question=all_questions[current].question_string;
-          Q_area.innerHTML='';
-          Q_area.innerHTML=question;
-          answers=all_questions[current].choices;
-          for(var i =0;i<answers.length;i+=1){
-            CheckBox[i].style.display='block';
-            Option[i].innerHTML=all_questions[current].choices[i];
-          }       CheckValueForCheckBox();
-                
-                if(SE&&IL&&APK&&KoK){
-                  Q_area.innerHTML='';
-                  HideAnswer();
-                  Q_area.innerHTML=all_questions[14].question_string;
-                  answers=all_questions[14].choices;
-                  for(var i =0;i<answers.length;i+=1){
-                    RadSel[i].style.display='block';
-                    RadText[i].innerHTML=all_questions[14].choices[i];
-                  }
-                  CheckValueForRadio();
-                  InferenceEngine();
-                      if(HE){
-                        HideAnswer();
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML="We recommend you to take the subject below: ";
-                        document.getElementById('result-1').style.display='block';
-                        document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
-                        document.getElementById('label').style.display='block';
-                      }else if(TITAS){
-                        HideAnswer();
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML="We recommend you to take the subject below: ";
-                        document.getElementById('result-1').style.display='block';
-                        document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
-                        document.getElementById('label').style.display='block';
-                      }else if(Both){
-                        HideAnswer();
-                        Q_area.innerHTML='';                   
-                        Q_area.innerHTML=all_questions[16].question_string;
-                        answers=all_questions[16].choices;
-                        for(var i =0;i<answers.length;i+=1){
-                        RadSel[i].style.display='block';
-                        RadText[i].innerHTML=all_questions[16].choices[i];
-                          }
-                        CheckValueForRadio();
-                            if(STEM){
-                              HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
-                              }
-                              CheckValueForRadio();
-                              if(Take){
+          }  
+        }else if(SSNL|SANL){//Look this up
+          if(JMsubject||APKsubject||ILsubject||STEMsubject){
+
+          }else{
+            current=5;
+            var question=all_questions[current].question_string;
+            Q_area.innerHTML='';
+            Q_area.innerHTML=question;
+            answers=all_questions[current].choices;
+            for(var i =0;i<answers.length;i+=1){
+              CheckBox[i].style.display='block';
+              Option[i].innerHTML=all_questions[current].choices[i];
+            }       CheckValueForCheckBox();
+                  
+                  if(SE&&IL&&APK&&KoK){
+                    Q_area.innerHTML='';
+                    HideAnswer();
+                    Q_area.innerHTML=all_questions[14].question_string;
+                    answers=all_questions[14].choices;
+                    for(var i =0;i<answers.length;i+=1){
+                      RadSel[i].style.display='block';
+                      RadText[i].innerHTML=all_questions[14].choices[i];
+                    }
+                    CheckValueForRadio();
+                    InferenceEngine();
+                        if(HE){
+                          HideAnswer();
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML="We recommend you to take the subject below: ";
+                          document.getElementById('result-1').style.display='block';
+                          document.getElementById('TextResult').innerHTML="GIG 1001 | Tamadun Islam dan Tamadun Asia";
+                          document.getElementById('label').style.display='block';
+                        }else if(TITAS){
+                          HideAnswer();
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML="We recommend you to take the subject below: ";
+                          document.getElementById('result-1').style.display='block';
+                          document.getElementById('TextResult').innerHTML="GIG 1002 | Hubungan Etnik(HE)";
+                          document.getElementById('label').style.display='block';
+                        }else if(Both){
+                          HideAnswer();
+                          Q_area.innerHTML='';                   
+                          Q_area.innerHTML=all_questions[16].question_string;
+                          answers=all_questions[16].choices;
+                          for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[16].choices[i];
+                            }
+                          CheckValueForRadio();
+                              if(STEM){
                                 HideAnswer();
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
+                                }
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
+                                    Q_area.innerHTML='';
+                                    Q_area.innerHTML="We recommend you to take the subject below: ";
+                                    document.getElementById('result-1').style.display='block';
+                                    document.getElementById('TextResult').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+                                    document.getElementById('label').style.display='block';
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                  }
+                              }else if(IPH){
+                                HideAnswer();
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
+                                }
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
                                   Q_area.innerHTML='';
                                   Q_area.innerHTML="We recommend you to take the subject below: ";
                                   document.getElementById('result-1').style.display='block';
-                                  document.getElementById('TextResult').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+                                  document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
                                   document.getElementById('label').style.display='block';
-                              }else if(Drop){
-                                Q_area.innerHTML='';
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                  }
+                                
+                              }else if(None){
                                 HideAnswer();
-                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                answers=all_questions[6].choices;
+                                question=all_questions[6].question_string;
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML=question;
+                                for(var i =0;i<answers.length;i+=1){
+                                  RadSel[i].style.display='block';
+                                  RadText[i].innerHTML=all_questions[6].choices[i];
                                 }
-                            }else if(IPH){
-                              HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
-                              }
-                              CheckValueForRadio();
-                              if(Take){
-                                HideAnswer();
-                                Q_area.innerHTML='';
-                                Q_area.innerHTML="We recommend you to take the subject below: ";
-                                document.getElementById('result-1').style.display='block';
-                                document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
-                                document.getElementById('label').style.display='block';
-                              }else if(Drop){
-                                Q_area.innerHTML='';
-                                HideAnswer();
-                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                CheckValueForRadio();
+                                if(Take){
+                                  HideAnswer();
+                                  Q_area.innerHTML='';
+                                  Q_area.innerHTML="We recommend you to take the subject below: ";
+                                  document.getElementById('result-1').style.display='block';
+                                  document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
+                                  document.getElementById('label').style.display='block';
+                                  document.getElementById('result-2').style.display='block';
+                                  document.getElementById('TextResult2').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
+  
+                                }else if(Drop){
+                                  Q_area.innerHTML='';
+                                  HideAnswer();
+                                    document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
                                 }
-                              
-                            }else if(None){
-                              HideAnswer();
-                              answers=all_questions[6].choices;
-                              question=all_questions[6].question_string;
-                              Q_area.innerHTML='';
-                              Q_area.innerHTML=question;
-                              for(var i =0;i<answers.length;i+=1){
-                                RadSel[i].style.display='block';
-                                RadText[i].innerHTML=all_questions[6].choices[i];
+  
                               }
-                              CheckValueForRadio();
-                              if(Take){
-                                HideAnswer();
-                                Q_area.innerHTML='';
-                                Q_area.innerHTML="We recommend you to take the subject below: ";
-                                document.getElementById('result-1').style.display='block';
-                                document.getElementById('TextResult').innerHTML="GIX 1004 | STEM Appreciation";
-                                document.getElementById('label').style.display='block';
-                                document.getElementById('result-2').style.display='block';
-                                document.getElementById('TextResult2').innerHTML="GIX 1003 | Introduction to Peace and Humanitarian";
-
-                              }else if(Drop){
-                                Q_area.innerHTML='';
-                                HideAnswer();
-                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                              }
-
-                            }
-                      }
-                  }else if(SE&&IL&&APK){
-                    current=7
-                    Q_area.innerHTML='';
-                    HideAnswer();
-                    Q_area.innerHTML=all_questions[current].question_string;
-                    answers=all_questions[current].choices;
-                    for(var i =0;i<answers.length;i+=1){
-                      RadSel[i].style.display='block';
-                      RadText[i].innerHTML=all_questions[current].choices[i];
-                    }
-                    CheckValueForRadio();
-                    
-                    if(Sport){
-                      current=8;
+                        }
+                    }else if(SE&&IL&&APK){
+                      current=7
                       Q_area.innerHTML='';
                       HideAnswer();
                       Q_area.innerHTML=all_questions[current].question_string;
@@ -1551,213 +1824,226 @@ function ChangeQuestion(){
                         RadText[i].innerHTML=all_questions[current].choices[i];
                       }
                       CheckValueForRadio();
-                        if(e_S){
-
-                        }else if(Outdoor){
-
-                          if(Fb){
-
-                          }else if(rug){
-
-                          }else if(Fbee){
-
-                          }else if(Vball){
-
-                          }
-
-                        }else if(Indoor){
-                          if(Bad_m){
-
-                          }else if(MA){
-
-                          }else if(Bball){
-
-                          }else if(Takraw){
-
-                          }
-                        }
                       
-                    }else if(Arts1){
-
-                      if(Music){
-
-                      }else if(Draw){
-
-                      }else if(Dance){
-
+                      if(Sport){
+                        current=8;
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        Q_area.innerHTML=all_questions[current].question_string;
+                        answers=all_questions[current].choices;
+                        for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[current].choices[i];
+                        }
+                        CheckValueForRadio();
+                          if(e_S){
+  
+                          }else if(Outdoor){
+  
+                            if(Fb){
+  
+                            }else if(rug){
+  
+                            }else if(Fbee){
+  
+                            }else if(Vball){
+  
+                            }
+  
+                          }else if(Indoor){
+                            if(Bad_m){
+  
+                            }else if(MA){
+  
+                            }else if(Bball){
+  
+                            }else if(Takraw){
+  
+                            }
+                          }
+                        
+                      }else if(Arts1){
+  
+                        if(Music){
+  
+                        }else if(Draw){
+  
+                        }else if(Dance){
+  
+                        }
+                      }else if(Lship){
+  
+                        if(WPT){
+  
+                        }else if(Freelance){}
+  
                       }
-                    }else if(CW){
-
-                      if(WPT){
-
-                      }else if(Freelance){}
-
-                    }
-                  }else if(SE&&IL){
-                    
-                    HideAnswer();
-                    answers=all_questions[6].choices;
-                    question=all_questions[6].question_string;
-                    Q_area.innerHTML='';
-                    Q_area.innerHTML=question;
-                    for(var i =0;i<answers.length;i+=1){
-                      RadSel[i].style.display='block';
-                      RadText[i].innerHTML=all_questions[6].choices[i];
-                    }
-                    CheckValueForRadio();
-                    if(Take){
+                    }else if(SE&&IL){
+                      
+                      HideAnswer();
+                      answers=all_questions[6].choices;
+                      question=all_questions[6].question_string;
+                      Q_area.innerHTML='';
+                      Q_area.innerHTML=question;
+                      for(var i =0;i<answers.length;i+=1){
+                        RadSel[i].style.display='block';
+                        RadText[i].innerHTML=all_questions[6].choices[i];
+                      }
+                      CheckValueForRadio();
+                      if(Take){
+                        HideAnswer();
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML="We recommend you to take the subject below: ";
+                        document.getElementById('result-1').style.display='block';
+                        document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                        document.getElementById('label').style.display='block';
+                      }else if (Drop){
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                      }
+                      
+  
+            
+                    }else if(SE&&APK){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
+                            document.getElementById('label').style.display='block';
+                          }else if (Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          }
+                          
+                    }else if(IL&&APK){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                            document.getElementById('label').style.display='block';
+                          }else if (Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          }
+                          
+                    }else if(SE){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
+                            document.getElementById('label').style.display='block';
+  
+                            document.getElementById('result-2').style.display='block';
+                            document.getElementById('TextResult2').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                          }else if (Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                          }
+                      
+                    }else if(APK){
+                      HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                      if(Take){
+                        HideAnswer();
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML="We recommend you to take the subject below: ";
+                        document.getElementById('result-1').style.display='block';
+                        document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
+                        document.getElementById('label').style.display='block';
+    
+                        document.getElementById('result-2').style.display='block';
+                        document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                      }else if (Drop){
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                      }
+                      
+                    }else if(IL){
+                      HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                      if(Take){
+                        HideAnswer();
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML="We recommend you to take the subject below: ";
+                        document.getElementById('result-1').style.display='block';
+                        document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
+                        document.getElementById('label').style.display='block';
+  
+                        document.getElementById('result-2').style.display='block';
+                        document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
+                      }else if (Drop){
+                        Q_area.innerHTML='';
+                        HideAnswer();
+                        document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                      }
                       HideAnswer();
                       Q_area.innerHTML='';
                       Q_area.innerHTML="We recommend you to take the subject below: ";
                       document.getElementById('result-1').style.display='block';
                       document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                      document.getElementById('label').style.display='block';
-                    }else if (Drop){
-                      Q_area.innerHTML='';
-                      HideAnswer();
-                      document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                    }
-                    
-
-          
-                  }else if(SE&&APK){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
-                          document.getElementById('label').style.display='block';
-                        }else if (Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                          document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-                        
-                  }else if(IL&&APK){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                          document.getElementById('label').style.display='block';
-                        }else if (Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                          document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-                        
-                  }else if(SE){
-                        HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                        if(Take){
-                          HideAnswer();
-                          Q_area.innerHTML='';
-                          Q_area.innerHTML="We recommend you to take the subject below: ";
-                          document.getElementById('result-1').style.display='block';
-                          document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
-                          document.getElementById('label').style.display='block';
-
-                          document.getElementById('result-2').style.display='block';
-                          document.getElementById('TextResult2').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                        }else if (Drop){
-                          Q_area.innerHTML='';
-                          HideAnswer();
-                          document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                        }
-                    
-                  }else if(APK){
-                    HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                    if(Take){
-                      HideAnswer();
-                      Q_area.innerHTML='';
-                      Q_area.innerHTML="We recommend you to take the subject below: ";
-                      document.getElementById('result-1').style.display='block';
-                      document.getElementById('TextResult').innerHTML="GIG 10042 | Literasi Maklumat(IL)";
                       document.getElementById('label').style.display='block';
   
                       document.getElementById('result-2').style.display='block';
                       document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                    }else if (Drop){
-                      Q_area.innerHTML='';
-                      HideAnswer();
-                      document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
                     }
-                    
-                  }else if(IL){
-                    HideAnswer();
-                        answers=all_questions[6].choices;
-                        question=all_questions[6].question_string;
-                        Q_area.innerHTML='';
-                        Q_area.innerHTML=question;
-                        for(var i =0;i<answers.length;i+=1){
-                          RadSel[i].style.display='block';
-                          RadText[i].innerHTML=all_questions[6].choices[i];
-                        }
-                        CheckValueForRadio();
-                    if(Take){
-                      HideAnswer();
-                      Q_area.innerHTML='';
-                      Q_area.innerHTML="We recommend you to take the subject below: ";
-                      document.getElementById('result-1').style.display='block';
-                      document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                      document.getElementById('label').style.display='block';
-
-                      document.getElementById('result-2').style.display='block';
-                      document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                    }else if (Drop){
-                      Q_area.innerHTML='';
-                      HideAnswer();
-                      document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
-                    }
-                    HideAnswer();
-                    Q_area.innerHTML='';
-                    Q_area.innerHTML="We recommend you to take the subject below: ";
-                    document.getElementById('result-1').style.display='block';
-                    document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan Keusahawan(APK)";
-                    document.getElementById('label').style.display='block';
-
-                    document.getElementById('result-2').style.display='block';
-                    document.getElementById('TextResult2').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
-                  }
+          }
 
         }
         else{
@@ -1776,19 +2062,19 @@ function ChangeQuestion(){
               RadSel[i].style.display='block';
               RadText[i].innerHTML=all_questions[current].choices[i];
             }
-          }}
-      
+            
+            
+            }
+            InferenceEngine();
+          }}else{
+            console.log("Please choose an answer");
+          }    
+}
 
-     
-}else{
-  console.log("Please choose an answer");
-}
-}
 
 function CheckValueForRadio(){
   if(document.getElementById('radio_1').checked){
     var value = radio_d1.innerHTML;
-    document.getElementById('radio_1').checked=false;
     if(value=="First year"){
       Freshman=true;
     }
@@ -1831,9 +2117,8 @@ function CheckValueForRadio(){
     }
   }
   if(document.getElementById('radio_2').checked){
-    console.log("radio_2"+Drop);
+  
     var value = radio_d2.innerHTML;
-    document.getElementById('radio_2').checked=false;
    if(value=="Second year"){
      Senior=true;
     }
@@ -1878,9 +2163,8 @@ function CheckValueForRadio(){
     IPH=true;
   }
   if(document.getElementById('radio_3').checked){
-    console.log("radio_3"+Drop);
+    
     var value = radio_d3.innerHTML;
-    document.getElementById('radio_3').checked=false;
     if(value=="Third year"){
       Senior=true;
     }
@@ -1893,8 +2177,8 @@ function CheckValueForRadio(){
     if(value=='less than 18'){
       Take=true;
     }
-    if(value=="Casual work"){
-      CW=true;
+    if(value=="Leadership"){
+      Lship=true;
     }
     if(value=="indoor sports"){
       Indoor=true;
@@ -1915,7 +2199,6 @@ function CheckValueForRadio(){
 
   if(document.getElementById('radio_4').checked){
     var value = radio_d4.innerHTML;
-    document.getElementById('radio_4').checked=false;
     if(value=="Fourth year"){
       Senior=true;
     }
@@ -1955,7 +2238,7 @@ function CheckValueForCheckBox(){
     }
   }
   if(document.getElementById('option4').checked){
-    console.log("masuk sisn dok")
+  
     var value = option4_text.innerHTML;
     if(value=='Ko-K'){
     KoK=true;
@@ -1964,55 +2247,49 @@ function CheckValueForCheckBox(){
 }
 
 function InferenceEngine(){
+ 
   if(Freshman==true 
     && Sceince==true 
-    && local==true
-    &&HE==true)
+    && local==true)
     {
             FSL=true;
     }else if
     (Freshman==true 
       && Sceince==true 
-      && local==true
-      &&TITAS==true)
+      && local==true)
       {
             FSL=true
   } else if
   (Freshman==true 
     && Sceince==true 
-    && local==true
-    && None==true)
+    && local==true)
     {
       FSL=true;
   }else if
   (Freshman==true 
     && Art==true 
-    && local==true
-    && HE==true)
+    && local==true)
     {
       FAL=true;
-    console.log("we rocommend you to take TITAS this semester and drop HE");
   }else if
   (Freshman==true 
     && Art==true 
-    && local==true
-    && TITAS==true)
+    && local==true)
     {
       FAL=true;
-    console.log("we recommend you to take HE next semester");
+    
   }else if
   (Freshman==true 
     && Art==true 
-    && local==true
-    && None==true){
+    && local==true){
       FAL=true;
-    console.log("Choose one sbuject below");
+    
   }else if
   (Freshman==true 
     && Sceince==true 
     && Nonlocal==true){
       FSNL=true;
-      console.log("Not Malaysian")
+      
   }else if(
     Freshman==true 
     && Art==true 
@@ -2092,7 +2369,7 @@ function InferenceEngine(){
     Indoor=false,
     Outdoor=false,
     Arts1=false,
-    CW=false,
+    Lship=false,
     e_S=false,
     Music=false,
     Draw=false,

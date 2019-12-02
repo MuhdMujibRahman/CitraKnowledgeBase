@@ -17,9 +17,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from app.views import Home_view
+from app.views import Home_view,TableResult_view
 
 urlpatterns = [
+    path('Result/', TableResult_view, name='Result'),
     path('',Home_view, name='home'),
     path('admin/', admin.site.urls),
 

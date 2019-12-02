@@ -147,7 +147,7 @@ var all_questions = [{
 ];
 
 //var str = document.getElementById('search-value').value;
-var str="I want to register Jalinan Masyarakat subject"
+var str="I want to registersubject"
             // Displaying the value
 document.getElementById("Explain").innerHTML='';
 document.getElementById('result-1').style.display='none';
@@ -178,6 +178,8 @@ if(str.match(/Jalinan Masyarakat/g)){
   getInputValue();
 }else if(str.match(/Information literacy/g)){
   IL=true;
+  getInputValue();
+}else{
   getInputValue();
 }
 
@@ -505,6 +507,7 @@ function ChangeQuestion(){
               }
           
         }}else if(SSL||SAL){
+          HideAnswer();
           if(SSL&&JMsubject){
             HideAnswer();
             answers=all_questions[6].choices;
@@ -820,7 +823,7 @@ function ChangeQuestion(){
                       }
                       CheckValueForRadio();
                       
-                      if(Sport){
+                      if(Sport){//Look this up
                         current=8;
                         Q_area.innerHTML='';
                         HideAnswer();
@@ -832,45 +835,256 @@ function ChangeQuestion(){
                         }
                         CheckValueForRadio();
                           if(e_S){
-  
+                            answers=all_questions[6].choices;
+                            question=all_questions[6].question_string;
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML=question;
+                            for(var i =0;i<answers.length;i+=1){
+                              RadSel[i].style.display='block';
+                              RadText[i].innerHTML=all_questions[6].choices[i];
+                            }
+                            CheckValueForRadio();
+                            if(Take){
+                              HideAnswer();
+                              Q_area.innerHTML='';
+                              Q_area.innerHTML="We recommend you to take the subject below: ";
+                              document.getElementById('result-1').style.display='block';
+                              document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                              document.getElementById('label').style.display='block';
+    
+                              
+                            }else if(Drop){
+                              Q_area.innerHTML='';
+                              HideAnswer();
+                                document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                              }
                           }else if(Outdoor){
-  
-                            if(Fb){
-  
-                            }else if(rug){
-  
-                            }else if(Fbee){
-  
-                            }else if(Vball){
+                            HideAnswer();
+                            answers=all_questions[11].choices;
+                            question=all_questions[11].question_string;
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML=question;
+                            for(var i =0;i<answers.length;i+=1){
+                              RadSel[i].style.display='block';
+                              RadText[i].innerHTML=all_questions[11].choices[i];
+                            }
+                            CheckValueForRadio(); 
+                            if(Fb||rug||Fbee||Vball){
+                              answers=all_questions[6].choices;
+                              question=all_questions[6].question_string;
+                              Q_area.innerHTML='';
+                              Q_area.innerHTML=question;
+                              for(var i =0;i<answers.length;i+=1){
+                                RadSel[i].style.display='block';
+                                RadText[i].innerHTML=all_questions[6].choices[i];
+                              }
+                              CheckValueForRadio();
+                              if(Take&&Fb){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+      
+                                
+                              }else if(Take&&rug){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Take&&Fbee){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Take&&Vball){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Drop){
+                                Q_area.innerHTML='';
+                                HideAnswer();
+                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                }
   
                             }
-  
                           }else if(Indoor){
-                            if(Bad_m){
-  
-                            }else if(MA){
-  
-                            }else if(Bball){
-  
-                            }else if(Takraw){
+                            HideAnswer();
+                            answers=all_questions[12].choices;
+                            question=all_questions[12].question_string;
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML=question;
+                            for(var i =0;i<answers.length;i+=1){
+                              RadSel[i].style.display='block';
+                              RadText[i].innerHTML=all_questions[12].choices[i];
+                            }
+                            CheckValueForRadio();
+                            if(Bad_m||MA||Bball||Takraw){
+                              answers=all_questions[6].choices;
+                              question=all_questions[6].question_string;
+                              Q_area.innerHTML='';
+                              Q_area.innerHTML=question;
+                              for(var i =0;i<answers.length;i+=1){
+                                RadSel[i].style.display='block';
+                                RadText[i].innerHTML=all_questions[6].choices[i];
+                              }
+                              CheckValueForRadio();
+                              if(Take&&Bad_m){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+      
+                                
+                              }else if(Take&&MA){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Take&&Bball){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Take&&Takraw){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Drop){
+                                Q_area.innerHTML='';
+                                HideAnswer();
+                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                }                              
   
                             }
                           }
                         
                       }else if(Arts1){
-  
-                        if(Music){
-  
-                        }else if(Draw){
-  
-                        }else if(Dance){
+                        HideAnswer();
+                        answers=all_questions[8].choices;
+                        question=all_questions[8].question_string;
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML=question;
+                        for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[8].choices[i];
+                        }
+                        CheckValueForRadio();  
+                        if(Music||Draw||Dance){
+                          answers=all_questions[6].choices;
+                              question=all_questions[6].question_string;
+                              Q_area.innerHTML='';
+                              Q_area.innerHTML=question;
+                              for(var i =0;i<answers.length;i+=1){
+                                RadSel[i].style.display='block';
+                                RadText[i].innerHTML=all_questions[6].choices[i];
+                              }
+                              CheckValueForRadio();
+                              if(Take&&Music){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+      
+                                
+                              }else if(Take&&Dance){
+                                HideAnswer();
+                                Q_area.innerHTML='';
+                                Q_area.innerHTML="We recommend you to take the subject below: ";
+                                document.getElementById('result-1').style.display='block';
+                                document.getElementById('TextResult').innerHTML="GKK 1001 | Talent Development";
+                                document.getElementById('label').style.display='block';
+                              }else if(Drop){
+                                Q_area.innerHTML='';
+                                HideAnswer();
+                                  document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                                }
   
                         }
                       }else if(Lship){
+                        HideAnswer();
+                        answers=all_questions[10].choices;
+                        question=all_questions[10].question_string;
+                        Q_area.innerHTML='';
+                        Q_area.innerHTML=question;
+                        for(var i =0;i<answers.length;i+=1){
+                          RadSel[i].style.display='block';
+                          RadText[i].innerHTML=all_questions[10].choices[i];
+                        }
+                        CheckValueForRadio();                       
   
                         if(WPT){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GKA 1001 | Attach@Industry";
+                            document.getElementById('label').style.display='block';
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                            }
   
-                        }else if(Freelance){}
+                        }else if(Freelance){
+                          HideAnswer();
+                          answers=all_questions[6].choices;
+                          question=all_questions[6].question_string;
+                          Q_area.innerHTML='';
+                          Q_area.innerHTML=question;
+                          for(var i =0;i<answers.length;i+=1){
+                            RadSel[i].style.display='block';
+                            RadText[i].innerHTML=all_questions[6].choices[i];
+                          }
+                          CheckValueForRadio();
+                          if(Take){
+                            HideAnswer();
+                            Q_area.innerHTML='';
+                            Q_area.innerHTML="We recommend you to take the subject below: ";
+                            document.getElementById('result-1').style.display='block';
+                            document.getElementById('TextResult').innerHTML="GKN 1002 | Independent Research";
+                            document.getElementById('label').style.display='block';
+                            document.getElementById('result-2').style.display='block';
+                            document.getElementById('TextResult2').innerHTML="GKN 1001 | Community Service";
+                            document.getElementById('result-3').style.display='block';
+                            document.getElementById('TextResult3').innerHTML="GKN 1001 | Community Service";
+
+                          }else if(Drop){
+                            Q_area.innerHTML='';
+                            HideAnswer();
+                              document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+                            }                    
+                        }
   
                       }
                     }else if(SE&&IL){
@@ -1602,7 +1816,7 @@ function ChangeQuestion(){
                   }
               }
           }  
-        }else if(SSNL|SANL){
+        }else if(SSNL|SANL){//Look this up
           if(JMsubject||APKsubject||ILsubject||STEMsubject){
 
           }else{
