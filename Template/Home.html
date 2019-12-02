@@ -1,0 +1,169 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Style.css'%}">
+    <meta charset="UTF-8">
+    <title>Citra</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<header class="header-container">
+    <div class="header">
+        <div class="wrap">
+            <div class="logo">
+                <h1 class="logo">Welcome To Citra Knowledge Base System</h1>
+                
+            </div>
+            <div class="search">
+                <form action='.' method="POST">{% csrf_token %}
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="search" id="search" placeholder="Search here.." name="search"/>
+                    <input type="hidden" id="search-value"value="{{my_form}}"/>
+                    <button type="submit" id="myBtn"  >Go</buttton>
+            </form>
+            </div>
+                
+            <div class="greet_area">
+                       <h1 class="greet">Hi. How may I help you?</h1> 
+            </div>
+            </div>
+
+    </div>
+</header>
+<form class="form">
+<div class="content_container" id="content_id">
+    <div class="popup"></div>
+    <div id="questionArea">
+        <h2 id="questionToAsk" class="questionStyle"></h2>
+    </div>
+        
+    <div class="ChoiceArea">  
+          <div class="inputGroup" id="RC1">
+            <input id="radio_1" name="radio" type="radio" class="radio">
+            <label for="radio_1">
+                <h2 id="radio_d1"></h2>
+            </label>
+          </div>
+          <div class="inputGroup" id="RC2">
+                <input id="radio_2" name="radio" type="radio" class="radio">
+                <label for="radio_2">
+                    <h2 id="radio_d2"></h2>
+                </label>
+          </div>
+          <div class="inputGroup" id="RC3">
+                <input id="radio_3" name="radio" type="radio" class="radio">
+                <label for="radio_3">
+                    <h2 id="radio_d3"></h2>
+                </label>
+          </div>
+          <div class="inputGroup" id="RC4">
+                <input id="radio_4" name="radio" type="radio" class="radio">
+                <label for="radio_4">
+                    <h2 id="radio_d4"></h2>
+                </label>
+          </div>
+
+
+          
+          <div class="inputGroup" id="check1">
+            <input id="option1" name="check" type="checkbox" >
+            <label for="option1">
+                <h2 id="option1_text"></h2>
+            </label>
+          </div>
+          <div class="inputGroup" id="check2">
+                <input id="option2" name="radio" type="checkbox" >
+                <label for="option2">
+                    <h2 id="option2_text"></h2>
+                </label>
+          </div>
+          <div class="inputGroup" id="check3">
+                <input id="option3" name="radio" type="checkbox" >
+                <label for="option3">
+                    <h2 id="option3_text"></h2>
+                </label>
+          </div>
+          <div class="inputGroup" id="check4">
+                <input id="option4" name="radio" type="checkbox" >
+                <label for="option4">
+                    <h2 id="option4_text"></h2>
+                </label>
+          </div>
+          <div id="resultArea">
+                <label id="label">Click below for more detail: </label>
+            <div id="Explain">
+
+            </div>
+            <div class='result' id="result-1">
+                    <button type="button" id="ClickSubject" onclick="SubjectGet()">
+                            <h3 id="TextResult"></h3></button>
+            </div>
+            <div class='result' id="result-2">
+                    <button type="button" id="ClickSubject" onclick="SubjectGet()">
+                            <h3 id="TextResult2"></h3></button>
+            </div>
+            <div class='class' id="result-2"></div>
+        </div>
+          <div id="Btn_container">
+                    <button id="Btn" type="button" class="learn-more" onclick="ChangeQuestion()">
+                            <span class="circle">
+                              <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text" >Next</span>
+                    </button>
+          </div>
+    </div>
+</div>
+
+</form>
+<script type="text/javascript" src="/static/JavaScript/script.js">
+       var data_from_django="{{ my_form }}";
+       
+</script>
+
+<script type="text/javascript" src="/static/JavaScript/Firebase.js"></script>
+<section class="intro_cards">
+    <div class="intro_cards_container">
+        <div class="card1">
+            <div class="staff">
+                <h2>For Staff</h2>
+            </div>
+            <div class="staff_icon">
+                <span class="staff_icon">
+                <i class="fa fa-staff">
+                    <img class="icon_staff" src="/static/image/admin.png">
+                </i>
+            </span>
+            </div>
+        </div>
+        <div class="card1">
+           <div class="staff">
+                <h2>Need Help?</h2>
+            </div>
+            <div class="icon_help">
+                <span class="help_icon">
+                <i class="fa fa-staff">
+                    <img class="icon_help" src="/static/image/help.png">
+                </i>
+            </span>
+            </div>
+        </div>
+
+    </div>
+</section>
+<pre id="object"></pre>
+
+</body>
+</html>
+
+
+
+
+
