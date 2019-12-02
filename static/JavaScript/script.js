@@ -427,7 +427,13 @@ function ChangeQuestion(){
               HideAnswer();
               document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
               }
-        }else if(FSL){}else if(FSL&TITAS){
+        }else if(FSL){
+          if(JMsubject||ILsubject||STEMsubject||APK){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, this subject can be taken starting your Second year";
+          }
+        }else if(FSL&TITAS){
           answers=all_questions[6].choices;
           question=all_questions[6].question_string;
           Q_area.innerHTML='';
@@ -497,7 +503,122 @@ function ChangeQuestion(){
                 document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
               }
           
-        }}else if(SSL){
+        }}else if(SSL&&JMsubject){
+          HideAnswer();
+          answers=all_questions[6].choices;
+          question=all_questions[6].question_string;
+          Q_area.innerHTML='';
+          Q_area.innerHTML=question;
+          for(var i =0;i<answers.length;i+=1){
+            RadSel[i].style.display='block';
+            RadText[i].innerHTML=all_questions[6].choices[i];
+          }
+          CheckValueForRadio();
+          if(Take){
+            HideAnswer();
+            Q_area.innerHTML='';
+            Q_area.innerHTML="We recommend you to take the subject below: ";
+            document.getElementById('result-1').style.display='block';
+            document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat";
+            document.getElementById('label').style.display='block';
+          }else if(Drop){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+            }          
+        }else if(SSL&&APKsubject){
+          HideAnswer();
+          answers=all_questions[6].choices;
+          question=all_questions[6].question_string;
+          Q_area.innerHTML='';
+          Q_area.innerHTML=question;
+          for(var i =0;i<answers.length;i+=1){
+            RadSel[i].style.display='block';
+            RadText[i].innerHTML=all_questions[6].choices[i];
+          }
+          CheckValueForRadio();
+          if(Take){
+            HideAnswer();
+            Q_area.innerHTML='';
+            Q_area.innerHTML="We recommend you to take the subject below: ";
+            document.getElementById('result-1').style.display='block';
+            document.getElementById('TextResult').innerHTML="GIG 1003 | Asas Pembudayaan dan Keusahawan";
+            document.getElementById('label').style.display='block';
+          }else if(Drop){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+            }          
+        }else if(SSL&&ILsubject){
+          HideAnswer();
+          answers=all_questions[6].choices;
+          question=all_questions[6].question_string;
+          Q_area.innerHTML='';
+          Q_area.innerHTML=question;
+          for(var i =0;i<answers.length;i+=1){
+            RadSel[i].style.display='block';
+            RadText[i].innerHTML=all_questions[6].choices[i];
+          }
+          CheckValueForRadio();
+          if(Take){
+            HideAnswer();
+            Q_area.innerHTML='';
+            Q_area.innerHTML="We recommend you to take the subject below: ";
+            document.getElementById('result-1').style.display='block';
+            document.getElementById('TextResult').innerHTML="GIG 1004 | Literasi Maklumat";
+            document.getElementById('label').style.display='block';
+          }else if(Drop){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+            }
+        }else if(SSL&&IPHsubject){
+          HideAnswer();
+          answers=all_questions[6].choices;
+          question=all_questions[6].question_string;
+          Q_area.innerHTML='';
+          Q_area.innerHTML=question;
+          for(var i =0;i<answers.length;i+=1){
+            RadSel[i].style.display='block';
+            RadText[i].innerHTML=all_questions[6].choices[i];
+          }
+          CheckValueForRadio();
+          if(Take){
+            HideAnswer();
+            Q_area.innerHTML='';
+            Q_area.innerHTML="We recommend you to take the subject below: ";
+            document.getElementById('result-1').style.display='block';
+            document.getElementById('TextResult').innerHTML="GIX 1003 | Pengenalan Kepada Keamanan dan Kemanusiaan";
+            document.getElementById('label').style.display='block';
+          }else if(Drop){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+            }
+        }else if(SSL&&STEMsubject){
+          HideAnswer();
+          answers=all_questions[6].choices;
+          question=all_questions[6].question_string;
+          Q_area.innerHTML='';
+          Q_area.innerHTML=question;
+          for(var i =0;i<answers.length;i+=1){
+            RadSel[i].style.display='block';
+            RadText[i].innerHTML=all_questions[6].choices[i];
+          }
+          CheckValueForRadio();
+          if(Take){
+            HideAnswer();
+            Q_area.innerHTML='';
+            Q_area.innerHTML="We recommend you to take the subject below: ";
+            document.getElementById('result-1').style.display='block';
+            document.getElementById('TextResult').innerHTML="GIX 1004 | Apresiasi STEM";
+            document.getElementById('label').style.display='block';
+          }else if(Drop){
+            Q_area.innerHTML='';
+            HideAnswer();
+            document.getElementById("Explain").innerHTML="<h1>I'm Sorry, before taking any of this subject you should drop any 2 credit subject";
+            }
+        }else if(SSL){
           current=5;
           var question=all_questions[current].question_string;
           Q_area.innerHTML='';
@@ -520,7 +641,7 @@ function ChangeQuestion(){
                   CheckValueForRadio();
                   
                       if(HE){
-                        HideAnswer();
+                              HideAnswer();
                               answers=all_questions[6].choices;
                               question=all_questions[6].question_string;
                               Q_area.innerHTML='';
