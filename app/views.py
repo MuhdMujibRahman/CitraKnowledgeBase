@@ -18,7 +18,7 @@ def Home_view(request):
                     "I want to register Jalinan Masyarakat subject",
                 "Can I register Social Engagement",
                 "I want to register a subject",
-                "I want to take Ethnic relation",
+                "I want to take Ethnic Relation",
                 "Can I take Tamadun Islam Subject"]
     print("Number of documents:",len(raw_documents))
 

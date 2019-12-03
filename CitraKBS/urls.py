@@ -21,7 +21,7 @@ from app.views import Home_view,TableResult_view
 
 urlpatterns = [
     path('Result/', TableResult_view, name='Result'),
-    path('',Home_view, name='home'),
+    path('Home/',Home_view, name='home'),
     path('admin/', admin.site.urls),
 
 ]

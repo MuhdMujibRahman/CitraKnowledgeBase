@@ -101,18 +101,20 @@
             <div id="Explain">
 
             </div>
-            <div class='result' id="result-1">
-                    <button type="button" id="ClickSubject" onclick="SubjectGet()">
-                            <h3 id="TextResult"></h3></button>
-            </div>
-            <div class='result' id="result-2">
-                    <button type="button" id="ClickSubject" onclick="SubjectGet()">
-                            <h3 id="TextResult2"></h3></button>
-            </div>
-            <div class='result' id="result-3">
-                    <button type="button" id="ClickSubject" onclick="SubjectGet()">
-                            <h3 id="TextResult3"></h3></button>
-            </div>
+                    <div class='result' id="result-1">
+                            <button type="button" id="ClickSubject" onclick="SubjectGet()">
+                                    <h3 id="TextResult"></h3>
+                            </button>
+                    </div>
+                    <div class='result' id="result-2">
+                            <button type="button" id="ClickSubject" >
+                                
+                                    <h3 id="TextResult2"></h3></button>
+                    </div>
+                    <div class='result' id="result-3">
+                            <button type="button" id="ClickSubject" >
+                                    <h3 id="TextResult3"></h3></button>
+                    </div>
         </div>
           <div id="Btn_container">
                     <button id="Btn" type="button" class="learn-more" onclick="ChangeQuestion()">
@@ -126,12 +128,12 @@
 </div>
 
 </form>
-<script type="text/javascript" src="/static/JavaScript/script.js">
-       var data_from_django="{{ my_form }}";
-       
-</script>
+<script type="text/javascript" src="/static/JavaScript/Variable.js"></script>
 <script type="text/javascript" src="/static/JavaScript/Firebase.js"></script>
-<script type="text/javascript" src="/static/JavaScript/ResultTable.js"></script>
+<script type="text/javascript" src="/static/JavaScript/script.js">
+</script>
+
+
 <section class="intro_cards">
     <div class="intro_cards_container">
         <div class="card1">
@@ -164,6 +166,9 @@
 <pre id="object"></pre>
 
 </body>
+
+
+</script>
 </html>
 
 
