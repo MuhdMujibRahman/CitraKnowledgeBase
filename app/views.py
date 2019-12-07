@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView
 from Template.forms import RawForm
 import gensim
+import nltk
+nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 
 # Create your views here.
