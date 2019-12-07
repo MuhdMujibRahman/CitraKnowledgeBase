@@ -1,0 +1,12 @@
+django
+gunicorn
+django-heroku
+dj-database-url 
+numpy
+pip             
+psycopg2        
+pytz           
+setuptools      
+whitenoise
+requests 
+nltk
