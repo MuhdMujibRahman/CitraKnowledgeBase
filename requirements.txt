@@ -11,3 +11,4 @@ setuptools
 whitenoise
 requests 
 nltk
+nltk.tokenize
