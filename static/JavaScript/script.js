@@ -3513,6 +3513,6 @@ function InferenceEngine(){
   function SubjectGet(){
     
     localStorage.setItem("log",button_log);
-    location.replace("http://127.0.0.1:8000/Result/")
+    location.replace("https://citra-knowledge-base-system.herokuapp.com/Result/")
     
 }
