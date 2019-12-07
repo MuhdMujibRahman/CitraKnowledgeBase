@@ -45,7 +45,7 @@ def Home_view(request):
         s += len(i)
     print(s)
 
-    sims = gensim.similarities.Similarity('/static/Documents',tf_idf[corpus],
+    sims = gensim.similarities.Similarity('/static/Documents/test.txt',tf_idf[corpus],
                                         num_features=len(dictionary))
     print(sims)
     print(type(sims))
