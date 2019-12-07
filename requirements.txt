@@ -1,7 +1,8 @@
 django
 gunicorn
 django-heroku
-dj-database-url 
+dj-database-url
+gensim 
 numpy
 pip             
 psycopg2        
