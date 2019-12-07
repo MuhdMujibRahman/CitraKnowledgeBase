@@ -11,4 +11,3 @@ setuptools
 whitenoise
 requests 
 nltk
-nltk.download('punkt')
