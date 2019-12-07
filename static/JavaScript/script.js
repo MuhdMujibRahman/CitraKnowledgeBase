@@ -113,7 +113,7 @@ var all_questions = [{
   choices: ["Ethnic Relation(HE)", "TITAS","None above"]
 },{
   question_string: 'Choose the subject you have taken before(choose one or multiple) ',         //question 5
-  choices: ["Social Engagement", "Information Literacy", "Enterpernueship","Ko-K"]
+  choices: ["Social Engagement", "Information Literacy", "Entrepernuership","Ko-K"]
 },{
   question_string: 'How many total of credits do you have now ? ',//After choosing subject
   choices: ["Exactly 22", "Less than 22", "less than 18","More than 22"]
@@ -574,9 +574,9 @@ function ChangeQuestion(){
               Q_area.innerHTML='';
               Q_area.innerHTML="We recommend you to take the subject below: ";
               document.getElementById('result-1').style.display='block';
-              document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat";
+              document.getElementById('TextResult').innerHTML="GIG 1005 | Jalinan Masyarakat(JM)";
               document.getElementById('label').style.display='block';
-              btn_value="GIG 1005 | Jalinan Masyarakat";
+              btn_value="GIG 1005 | Jalinan Masyarakat(JM)";
               localStorage.setItem("value", btn_value);
             }else if(Drop){
               Q_area.innerHTML='';
