@@ -54,7 +54,7 @@ if(newValue=="GIG 1002 | Hubungan Etnik(HE)"||newValue=="GIG 1002 | Ethnic Relat
         row_1_col_5.innerHTML=doc.data()['Assessment'];
         row_1_col_6.innerHTML=doc.data()['Language'];
     })
-  }else if (newValue=="GIG 1003 | Asas Pembudayaan dan Keusahawan"||newValue=="GIG 1003 | Basic Entrepreneurship Enculturation") {
+  }else if (newValue=="GIG 1003 | Asas Pembudayaan dan Keusahawan(APK)"||newValue=="GIG 1003 | Basic Entrepreneurship Enculturation") {
     APKdetail.get().then(function (doc){
     
         row_1_col_1.innerHTML=doc.data()['Code'];
@@ -64,7 +64,7 @@ if(newValue=="GIG 1002 | Hubungan Etnik(HE)"||newValue=="GIG 1002 | Ethnic Relat
         row_1_col_5.innerHTML=doc.data()['Assessment'];
         row_1_col_6.innerHTML=doc.data()['Language'];
     })    
-  } else if (newValue=="GIG 1005 | Jalinan Masyarakat"||newValue=="GIG 1005 | Social Engagement") {
+  } else if (newValue=="GIG 1005 | Jalinan Masyarakat(JM)"||newValue=="GIG 1005 | Social Engagement") {
     SEdetail.get().then(function (doc){
     
         row_1_col_1.innerHTML=doc.data()['Code'];
@@ -94,7 +94,7 @@ if(newValue=="GIG 1002 | Hubungan Etnik(HE)"||newValue=="GIG 1002 | Ethnic Relat
         row_1_col_5.innerHTML=doc.data()['Assessment'];
         row_1_col_6.innerHTML=doc.data()['Language'];
     })   
-  } else if (newVale=="GIX 1003 | Pengenalan Kepada Keamanan dan Kemanusiaan"||newValue=="GIX 1003 | Introduction to Peace and Humanitarian") {
+  } else if (newValue=="GIX 1003 | Pengenalan Kepada Keamanan dan Kemanusiaan"||newValue=="GIX 1003 | Introduction to Peace and Humanitarian") {
     IPHdetail.get().then(function (doc){
     
         row_1_col_1.innerHTML=doc.data()['Code'];
