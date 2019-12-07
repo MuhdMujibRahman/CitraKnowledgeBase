@@ -6,7 +6,7 @@ import gensim
 import nltk
 nltk.download('punkt')
 from nltk.tokenize import word_tokenize
-
+#test
 # Create your views here.
 def Home_view(request):
     my_form=""
