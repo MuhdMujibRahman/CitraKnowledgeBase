@@ -14,7 +14,7 @@ from nltk.tokenize import word_tokenize
 def Home_view(request):
     raw_documents = ["What subject I need to register",
                     "I want to register Jalinan Masyarakat subject",
-                    "I want to take information literacy",
+                    "I want to take should I register information literacy",
                     "anything related to library subject Information literacy",
                 "Can I register Social Engagement",
                 "subject related to community Social Engagement",
