@@ -94,6 +94,7 @@ transition: background .55s ease;
   font-size: 50px;
   letter-spacing: 1px;
   text-align: center;
+  background-image:url("/static/image/citra_logo.png");
 }
 
 #label{

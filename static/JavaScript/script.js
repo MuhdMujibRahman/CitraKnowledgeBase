@@ -1,11 +1,7 @@
 
 var input = document.getElementById("search");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("myBtn").click();
-  }
-});
+
+
 var current=0;
 var Freshman=false, 
     Senior=false,
@@ -160,7 +156,7 @@ document.getElementById('result-2').style.display='none';
 document.getElementById('label').style.display='none';
 factReset();
             
-if(str.match(/Jalinan Masyarakat/g)){
+if(str.match(/Social Engagement/g)){
   JMsubject=true;
   getInputValue();             
 }else if(str.match(/Ethnic Relation/g)){
@@ -186,6 +182,8 @@ if(str.match(/Jalinan Masyarakat/g)){
   getInputValue();
 }else if(str.match(/register/g)){
   getInputValue();
+}else if(str.match(/nothing/g)){
+  alert("I'm sorry, please re-enter your question")
 }
 
 function getInputValue(){
@@ -223,7 +221,7 @@ function RadioReset(){
 }
 
 function ChangeQuestion(){
-  
+  console.log(APKsubject)
   if(RadioBtton())
   {
         var answers=all_questions[current].choices;
@@ -316,7 +314,7 @@ function ChangeQuestion(){
               }
         }else if(FAL){
           HideAnswer();
-            if(JMsubject||ILsubject||STEMsubject||APK){
+            if(JMsubject||ILsubject||STEMsubject||APKsubject){
               Q_area.innerHTML='';              
               document.getElementById("Explain").innerHTML="<h1>I'm Sorry, this subject can be taken starting your Second year";
             }else {
@@ -463,7 +461,7 @@ function ChangeQuestion(){
               }
         }else if(FSL){
           HideAnswer();
-          if(JMsubject||ILsubject||STEMsubject||APK){
+          if(JMsubject||ILsubject||STEMsubject||APKsubject){
             Q_area.innerHTML='';
             HideAnswer();
             document.getElementById("Explain").innerHTML="<h1>I'm Sorry, this subject can be taken starting your Second year";

@@ -19,17 +19,33 @@
         <div class="wrap">
             <div class="logo">
                 <h1 class="logo">Welcome To Citra Knowledge Base System</h1>
-                
+   
             </div>
             <div class="search">
                 <form action='.' method="POST">{% csrf_token %}
+                        {{my_form.as_p}}
                     <span class="icon"><i class="fa fa-search"></i></span>
-                    <input type="search" id="search" placeholder="Search here.." name="search"/>
-                    <input type="hidden" id="search-value"value="{{my_form}}"/>
-                    <button type="submit" id="myBtn"  >Go</buttton>
-            </form>
-            </div>
-                
+                    <datalist id="alist">
+                        <option value="I want to take Social Engagement">
+                        <option value="Can I take Ethnic Relation">
+                        <option value="Can I take Islamic ">
+                        <option value="Should I regirster Information Literacy">
+                        <option value="Can I register Basic Entreperneurship">
+                        <option value="Can I register Introduction to Malaysia">
+                      </datalist>
+                    <input type="hidden" id="search-value"value="{{my_text}}"/>
+                    <button type="submit" id="myBtn" >Go</buttton>
+                        {% if messages %}
+                        <div class="row">
+                              {% for message in messages %}
+                              <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                              {% endfor %}
+            
+                        </div>
+                        {% endif %}
+                        </div>
+                       
+            </form> 
             <div class="greet_area">
                        <h1 class="greet">Hi. How may I help you?</h1> 
             </div>
