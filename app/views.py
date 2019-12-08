@@ -10,6 +10,7 @@ nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 #test
 # Create your views here.
+#soemthing change
 def Home_view(request):
     raw_documents = ["What subject I need to register",
                     "I want to register Jalinan Masyarakat subject",
