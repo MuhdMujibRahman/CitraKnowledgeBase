@@ -13,6 +13,8 @@ from nltk.tokenize import word_tokenize
 #soemthing change
 def Home_view(request):
     raw_documents = ["What subject I need to register",
+                    "Subject that I can register",
+                    "Course that I should register",
                     "I want to register Jalinan Masyarakat subject",
                     "I want to take should I register information literacy",
                     "anything related to library subject Information literacy",
@@ -60,7 +62,7 @@ def Home_view(request):
 
             print(sims[query_doc_tf_idf])
             index=[]
-            for i in range (16):
+            for i in range (17):
                 index.append(sims[query_doc_tf_idf][i])
 
             
