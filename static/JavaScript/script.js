@@ -109,7 +109,7 @@ var all_questions = [{
   choices: ["Ethnic Relation(HE)", "TITAS","None above"]
 },{
   question_string: 'Choose the subject you have taken before(choose one or multiple) ',         //question 5
-  choices: ["Social Engagement", "Information Literacy", "Entrepernuership","Ko-K"]
+  choices: ["Social Engagement", "Information Literacy", "Entreprenuership","Ko-K"]
 },{
   question_string: 'How many total of credits do you have now ? ',//After choosing subject
   choices: ["Exactly 22", "Less than 22", "less than 18","More than 22"]
@@ -221,7 +221,7 @@ function RadioReset(){
 }
 
 function ChangeQuestion(){
-  console.log(APKsubject)
+  
   if(RadioBtton())
   {
         var answers=all_questions[current].choices;
@@ -3365,7 +3365,7 @@ function CheckValueForCheckBox(){
   }
   if(document.getElementById('option3').checked){
     var value = option3_text.innerHTML;
-    if(value=='Enterpernueship'){
+    if(value=='Entreprenuership'){
       APK=true;
     }
   }
