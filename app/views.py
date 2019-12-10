@@ -62,22 +62,21 @@ def Home_view(request):
             print(query_doc_tf_idf)
 
             print(sims[query_doc_tf_idf])
-            index=[]
+            index1=[]
+            maxi=[]
             for i in range (23):
-                index.append(sims[query_doc_tf_idf][i])
+                index1.append(sims[query_doc_tf_idf][i])
 
+            maxim=index1.index(max(index1))
+            print(maxim)
+            print(raw_documents[maxim])
+            if index1[maxim]>0.5:
+                my_text=raw_documents[maxim]
+                print(my_text)
+            else:
+                my_text="nothing"
+                print(my_text)
             
-
-            error=False
-            for i in range(len(index)):
-                if index[i]>0.5:
-                    print(i)
-                    my_text=raw_documents[i]
-                    print(my_text)
-                    break
-                else:
-                    my_text="nothing"
-                    print(my_text)
             
 
     
