@@ -16,16 +16,17 @@ def Home_view(request):
                     "Subject that I can register",
                     "Course that I should register",
                     "I want to register Jalinan Masyarakat subject",
-                    "I want to take should I register information literacy",
+                    "should I take Information literacy","can I take Information literacy",
                     "anything related to library subject Information literacy",
-                "Can I register Social Engagement",
+                "Can I register Social Engagement","can I take Social Engagement",
+                "can I take Ethnic Relation","I want to register Ethnic Relation",
                 "subject related to community Social Engagement",
                 "I want to register a subject",
                 "I want to take Ethnic Relation",
                 "Can I take TITAS Tamadun Islam Subject",
                 "subject Islam and Asia Civilisation Tamadun Islam",
                 "subject about Islamic Civilization Tamadun Islam",
-                "I want to take Basic Entreperneurship Pembudayaan Keusahawanan",
+                "I want to take Basic Entrepreneurship APK","should I take Basic Entrepreneurship APK",
                 "subject about business Pembudayaan Keusahawanan",
                 "subjec about ethnics Ethnic Relation",
                 "subject about culture Ethnic Relation",
@@ -62,7 +63,7 @@ def Home_view(request):
 
             print(sims[query_doc_tf_idf])
             index=[]
-            for i in range (17):
+            for i in range (23):
                 index.append(sims[query_doc_tf_idf][i])
 
             

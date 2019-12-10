@@ -165,7 +165,7 @@ if(str.match(/Social Engagement/g)){
 }else if(str.match(/Tamadun Islam/g)){
   TITASsubject=true;
   getInputValue();
-}else if(str.match(/Pembudayaan Keusahawan/g)){
+}else if(str.match(/APK/g)){
   APKsubject=true;
   getInputValue();
 }else if(str.match(/Intoduction to Malaysia/g)){
