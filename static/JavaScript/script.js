@@ -2019,7 +2019,7 @@ function ChangeQuestion(){
                       document.getElementById('result-1').style.display='block';
                       document.getElementById('TextResult').innerHTML="GKA 1001 | Attach@Industry";
                       document.getElementById('label').style.display='block';
-                      btn_value="GKK 1001 | Talent Development";
+                      btn_value="GKA 1001 | Attach@Industry";
                           localStorage.setItem("value", btn_value);
                           Interest="wpt";
                           localStorage.setItem("Intersert",Interest);
